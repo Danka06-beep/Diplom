@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Setings">
+
+    <EditText
+        android:id="@+id/PinText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="150dp"
+        android:ems="10"
+        android:hint="Введите пин-код"
+        android:inputType="numberPassword"
+        android:maxLength="4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="35dp" />
+
+    <ImageButton
+        android:id="@+id/hideAndShow"
+        android:layout_width="58dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="15dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/PinText"
+        app:layout_constraintStart_toEndOf="@+id/PinText"
+        app:srcCompat="@drawable/ic_baseline_visibility_24"
+        android:layout_marginLeft="15dp" />
+
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="285dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:text="Сохранить"
+        app:layout_constraintEnd_toEndOf="@+id/hideAndShow"
+        app:layout_constraintStart_toStartOf="@+id/PinText"
+        app:layout_constraintTop_toBottomOf="@+id/PinText" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="Вкладка добавить пин-код"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/PinText"
+        app:layout_constraintStart_toStartOf="@+id/PinText" />
+</androidx.constraintlayout.widget.ConstraintLayout>

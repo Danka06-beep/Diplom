@@ -17,6 +17,8 @@ public class App extends Application {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate();
         MyDbHelper myDbHelper = new MyDbHelper(this);
+        SQLiteDatabase writableDatabase = myDbHelper.getWritableDatabase();
+        noteRepository = new DbNotesRepo(writableDatabase);
 
     }
     public static NoteRepository getNoteRepository() {
