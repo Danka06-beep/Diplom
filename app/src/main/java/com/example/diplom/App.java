@@ -14,12 +14,12 @@ public class App extends Application {
     private static PinCode pincode;
 
 
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate() {
         super.onCreate();
         MyDbHelper myDbHelper = new MyDbHelper(this);
         SQLiteDatabase writableDatabase = myDbHelper.getWritableDatabase();
         noteRepository = new DbNotesRepo(writableDatabase);
-
+        pincode = new JustPinCode(this);
     }
     public static NoteRepository getNoteRepository() {
         return noteRepository;
