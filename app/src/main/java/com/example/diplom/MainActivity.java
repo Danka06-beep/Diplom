@@ -39,10 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (!App.getKeystore().hashPin()) {
-            Intent intent = new Intent(MainActivity.this, Setings.class);
-            startActivity(intent);
-        }
+
         Initialization();
 
         btnOne.setOnClickListener(this);
