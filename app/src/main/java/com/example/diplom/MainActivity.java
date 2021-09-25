@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -33,14 +34,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnZero;
     private String inputPin = "";
     private int keyImgPin = 0;
-    private ImageView[] imgkey;
-
+    private ImageView[] imgkey = new ImageView[4];
+Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Initialization();
+        if (!App.getKeystore().hashPin()) {
+            Intent intent = new Intent(MainActivity.this, Setings.class);
+            startActivity(intent);
+        }
+
+        initialization();
 
         btnOne.setOnClickListener(this);
         btnTwo.setOnClickListener(this);
@@ -65,22 +71,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageViewPin3.setImageResource(R.drawable.ic_circle);
     }
 
-    private void Initialization() {
-        ImageButton delBtn = findViewById(R.id.btnDel);
-        ImageView imageViewPin0 = findViewById(R.id.PinNul);
-        ImageView imageViewPin1 = findViewById(R.id.PinOne);
-        ImageView imageViewPin2 = findViewById(R.id.PinTwo);
-        ImageView imageViewPin3 = findViewById(R.id.PinThree);
-        Button oneBtn = findViewById(R.id.btnOne);
-        Button twoBtn = findViewById(R.id.btnTwo);
-        Button threeBtn = findViewById(R.id.btnTree);
-        Button fourBtn = findViewById(R.id.btnFour);
-        Button fiveBtn = findViewById(R.id.btnFive);
-        Button sixBtn = findViewById(R.id.btnSix);
-        Button sevenBtn = findViewById(R.id.btnSeven);
-        Button eightBtn = findViewById(R.id.btnEight);
-        Button nineBtn = findViewById(R.id.btnNine);
-        Button zeroBtn = findViewById(R.id.btnZero);
+    private void initialization() {
+        delBtn = findViewById(R.id.btnDel);
+        imageViewPin0 = findViewById(R.id.PinNul);
+        imageViewPin1 = findViewById(R.id.PinOne);
+        imageViewPin2 = findViewById(R.id.PinTwo);
+        imageViewPin3 = findViewById(R.id.PinThree);
+        btnOne = findViewById(R.id.btnOne);
+        btnTwo = findViewById(R.id.btnTwo);
+        btnTree = findViewById(R.id.btnTree);
+        btnFour = findViewById(R.id.btnFour);
+        btnFive = findViewById(R.id.btnFive);
+        btnSix = findViewById(R.id.btnSix);
+        btnSeven = findViewById(R.id.btnSeven);
+        btnEight = findViewById(R.id.btnEight);
+        btnNine = findViewById(R.id.btnNine);
+        btnZero = findViewById(R.id.btnZero);
+        imgkey[0] = imageViewPin0;
+        imgkey[1] = imageViewPin1;
+        imgkey[2] = imageViewPin2;
+        imgkey[3] = imageViewPin3;
+
     }
 
     @Override
@@ -138,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             if (inputPin.length() == 4) {
                 try {
+
                     if (App.getKeystore().checkPin(inputPin)) {
                         Intent intent = new Intent(MainActivity.this, ListToActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -155,12 +167,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }
-            } else {
-                Toast.makeText(this, "Вы уже ввели четры цыфры", Toast.LENGTH_SHORT).show();
             }
         }
+        }
 
-    }
+
+
 
     private void replenish() {
         if (keyImgPin < 4) {
@@ -184,3 +196,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 }
+

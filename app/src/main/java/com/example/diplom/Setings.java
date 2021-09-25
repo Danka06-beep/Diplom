@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 
 public class Setings extends AppCompatActivity implements View.OnClickListener{
 
@@ -24,7 +28,8 @@ public class Setings extends AppCompatActivity implements View.OnClickListener{
         Initialization();
         hideAndShow.setOnClickListener(this);
         saveBtn.setOnClickListener(this);
-        Bundle additionally = this.getIntent().getExtras();
+        Bundle extras = this.getIntent().getExtras();
+
 
     }
 
@@ -40,8 +45,14 @@ public class Setings extends AppCompatActivity implements View.OnClickListener{
         switch (v.getId()){
             case R.id.saveBtn:
                 if(pinText.getText().toString().length() == 4){
+                    try {
+                        App.getKeystore().saveNew(pinText.getText().toString());
+                    } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
+                        e.printStackTrace();
+                    }
                     Intent intent = new Intent(Setings.this, MainActivity.class);
                     startActivity(intent);
+                    Log.d("LOG","ggf");
                 }else{
                     Toast.makeText(this, "Вы ввели не достаточно символов", Toast.LENGTH_SHORT).show();
                 }

@@ -1,6 +1,7 @@
 package com.example.diplom;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.Dialog;
 import android.app.ListActivity;
@@ -15,7 +16,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toolbar;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,9 +52,6 @@ public class ListToActivity extends AppCompatActivity implements View.OnClickLis
         list.setOnItemLongClickListener(this);
 
 
-    }
-
-    private void setSupportActionBar(Toolbar toolbar) {
     }
 
     private void Initialization() {
@@ -95,10 +93,9 @@ public class ListToActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void loadBaseList() {
+
         simpleAdapterContent.clear();
-        for (Note note : App.getNoteRepository().getNotes()) {
-            simpleAdapterContent.add(note);
-        }
+        simpleAdapterContent.addAll(App.getNoteRepository().getNotes());
     }
 
 
@@ -120,7 +117,7 @@ public class ListToActivity extends AppCompatActivity implements View.OnClickLis
                     App.getNoteRepository().removeNotes(position);
                     break;
                 case Dialog.BUTTON_NEGATIVE:
-                    Log.d(LOG_TAG, "Неее");
+                    Log.d(LOG_TAG, "Нет!!!!!!!!!!!!!");
                     break;
             }
         }
