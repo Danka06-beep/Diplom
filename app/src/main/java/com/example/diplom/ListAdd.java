@@ -130,7 +130,7 @@ public class ListAdd extends AppCompatActivity implements View.OnClickListener{
         if (item.getItemId() == R.id.action_save) {
             String headline = heading.getText().toString();
             String body = bodyText.getText().toString();
-            Date date = (Date) Date.StringToDate(dateTxt.getText().toString());
+            java.util.Date date = Date.StringToDate(dateTxt.getText().toString());
             if (position != -1) {
                 App.getNoteRepository().removeNotes(position);
             }

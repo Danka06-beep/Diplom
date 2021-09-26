@@ -32,12 +32,7 @@ public class ListToActivity extends AppCompatActivity implements View.OnClickLis
     private Toolbar toolbar;
     final int DIALOG_REMOVE = 1;
 
-    @Override
-    protected void onStart() {
-        super.onStart();
 
-        loadBaseList();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
