@@ -3,6 +3,7 @@ package com.example.diplom;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
@@ -33,6 +34,12 @@ public class ListToActivity extends AppCompatActivity implements View.OnClickLis
     final int DIALOG_REMOVE = 1;
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        loadBaseList();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,12 +119,28 @@ public class ListToActivity extends AppCompatActivity implements View.OnClickLis
                     App.getNoteRepository().removeNotes(position);
                     break;
                 case Dialog.BUTTON_NEGATIVE:
-                    Log.d(LOG_TAG, "Нет!!!!!!!!!!!!!");
+                    Log.d(LOG_TAG, "Нет");
                     break;
             }
         }
     };
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        if (id == DIALOG_REMOVE) {
+            AlertDialog.Builder adb = new AlertDialog.Builder(this);
+            adb.setTitle(R.string.warning);
 
+            adb.setMessage(R.string.remove_data);
+
+            adb.setIcon(R.drawable.ic_baseline_info_24);
+
+            adb.setPositiveButton(R.string.remove, myClickListener);
+
+            adb.setNegativeButton(R.string.net, myClickListener);
+            return adb.create();
+        }
+        return super.onCreateDialog(id);
+    }
     public void onBackPressed() {
 
         super.onBackPressed();

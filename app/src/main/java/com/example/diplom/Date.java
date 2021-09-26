@@ -25,13 +25,13 @@ public class Date extends java.util.Date {
         return date;
     }
 
-    public static Date clockReset(Date date) {
+    public static java.util.Date clockReset(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.set(Calendar.HOUR_OF_DAY, 00);
         calendar.set(Calendar.MINUTE, 00);
         calendar.set(Calendar.SECOND, 00);
-        Date outputDate = (Date) calendar.getTime();
+        java.util.Date outputDate = calendar.getTime();
 
         return outputDate;
     }

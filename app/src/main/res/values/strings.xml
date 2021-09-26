@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Diplom</string>
+    <string name="remove_data">Вы уверены что хотите удалить запись?</string>
+    <string name="warning">Внимание</string>
+    <string name="remove">Удалить</string>
+    <string name="net">Нет</string>
 </resources>

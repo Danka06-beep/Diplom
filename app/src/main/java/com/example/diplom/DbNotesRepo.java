@@ -43,7 +43,7 @@ public class DbNotesRepo implements NoteRepository{
         }else {
 Log.d(LOG,"0 rows");
         }
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
