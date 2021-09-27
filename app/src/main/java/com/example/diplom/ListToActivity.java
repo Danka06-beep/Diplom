@@ -98,6 +98,9 @@ public class ListToActivity extends AppCompatActivity implements View.OnClickLis
 
         simpleAdapterContent.clear();
         simpleAdapterContent.addAll(App.getNoteRepository().getNotes());
+        listContentAdapter = createAdapter(simpleAdapterContent);
+        list.setAdapter(listContentAdapter);
+        listContentAdapter.notifyDataSetChanged();
     }
 
 
