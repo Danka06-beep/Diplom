@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import java.util.Date;
 import java.util.List;
 
 public class Adapter extends BaseAdapter implements ListAdapter {
@@ -47,12 +48,12 @@ public class Adapter extends BaseAdapter implements ListAdapter {
         TextView date = convertView.findViewById(R.id.TextThree);
         title.setText(note.getHeading());
         subtitle.setText(note.getBodyOfNote());
-        date.setText(Date.DateToString((Date) note.getDate()));
-        Date temp = (Date) note.getDate();
-        java.util.Date now = Date.clockReset(new Date());
+        date.setText(DateUtil.DateToString(note.getDate()));
+        Date temp = note.getDate();
+        Date now = DateUtil.clockReset(new Date());
 
         if (temp != null) {
-            if (Date.clockReset(temp).toString().equals(now.toString())) {
+            if (DateUtil.clockReset(temp).toString().equals(now.toString())) {
                 convertView.setBackgroundColor(Color.YELLOW);
             } else if (temp.before(now)) {
                 convertView.setBackgroundColor(Color.RED);

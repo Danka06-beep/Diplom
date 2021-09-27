@@ -57,13 +57,13 @@
         app:layout_constraintStart_toStartOf="@+id/bodyText"
         app:layout_constraintTop_toBottomOf="@+id/bodyText" />
 
-    <EditText
+    <TextView
         android:id="@+id/date"
+        android:visibility="gone"
         android:layout_width="326dp"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:inputType="date"
         app:layout_constraintStart_toStartOf="@+id/checkDeadline"
         app:layout_constraintTop_toBottomOf="@+id/checkDeadline" />
 
@@ -74,7 +74,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toEndOf="@+id/date"

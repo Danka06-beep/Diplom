@@ -3,14 +3,16 @@ package com.example.diplom;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.text.format.DateUtils;
+
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import java.util.Date;
 import java.util.List;
 
-public class DbNotesRepo implements NoteRepository{
+public class DbNotesRepo  implements NoteRepository{
 
     private final String LOG = DbNotesRepo.class.getName();
     private  final String NOTES_TABLE_NAME = "MyTable";
@@ -32,7 +34,7 @@ public class DbNotesRepo implements NoteRepository{
             do {
                 String heading = cursor.getString(headingColIndex);
                 String body = cursor.getString(bodyColIndex);
-                Date date = (Date) Date.StringToDate(cursor.getString(dateColIndex));
+                Date date = DateUtil.StringToDate(cursor.getString(dateColIndex));
                 int idList = cursor.getInt(id);
                 result.add((new Note(heading, body, date, idList)));
             }while (cursor.moveToNext());
@@ -51,7 +53,7 @@ Log.d(LOG,"0 rows");
         ContentValues contentVal = new ContentValues();
         contentVal.put("heading",note.getHeading());
         contentVal.put("body",note.getBodyOfNote());
-        contentVal.put("date", Date.DateToString((Date) note.getDate()));
+        contentVal.put("date", DateUtil.DateToString(note.getDate()));
         long rowID = db.insert(NOTES_TABLE_NAME, null, contentVal);
         Log.d(LOG, "row inserted, ID = " + rowID);
     }

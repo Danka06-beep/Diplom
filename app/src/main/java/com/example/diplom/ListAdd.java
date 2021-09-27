@@ -1,11 +1,9 @@
 package com.example.diplom;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -29,7 +28,7 @@ public class ListAdd extends AppCompatActivity implements View.OnClickListener{
     private Toolbar toolbar;
     private EditText heading;
     private EditText bodyText;
-    private EditText dateTxt;
+    private TextView dateTxt;
     private ImageButton dateBtn;
     private CheckBox checkDeadline;
     MyDbHelper dbHelper;
@@ -57,7 +56,7 @@ public class ListAdd extends AppCompatActivity implements View.OnClickListener{
             position = extras.getInt("position");
             heading.setText(App.getNoteRepository().getNotes().get(position).getHeading());
             bodyText.setText(App.getNoteRepository().getNotes().get(position).getBodyOfNote());
-            dateTxt.setText(Date.DateToString((Date) App.getNoteRepository().getNotes().get(position).getDate()));
+            dateTxt.setText(DateUtil.DateToString(App.getNoteRepository().getNotes().get(position).getDate()));
             Toast.makeText(this, "Редактирование заметки", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Новая заметка", Toast.LENGTH_SHORT).show();
@@ -123,14 +122,14 @@ public class ListAdd extends AppCompatActivity implements View.OnClickListener{
         }
     };
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.menu_save, menu);
         return super.onCreateOptionsMenu(menu);
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_save) {
             String headline = heading.getText().toString();
             String body = bodyText.getText().toString();
-            java.util.Date date = Date.StringToDate(dateTxt.getText().toString());
+            java.util.Date date = DateUtil.StringToDate(dateTxt.getText().toString());
             if (position != -1) {
                 App.getNoteRepository().removeNotes(position);
             }

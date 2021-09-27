@@ -2,9 +2,10 @@ package com.example.diplom;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
-public class Date extends java.util.Date {
+public class DateUtil {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy  HH:mm", Locale.US);
 
     public static String DateToString(Date date) {

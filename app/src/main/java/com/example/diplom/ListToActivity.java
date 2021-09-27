@@ -70,7 +70,7 @@ public class ListToActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.menu_setings, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
