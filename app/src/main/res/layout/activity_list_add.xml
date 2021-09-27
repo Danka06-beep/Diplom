@@ -65,7 +65,8 @@
         android:layout_marginTop="10dp"
         android:ems="10"
         app:layout_constraintStart_toStartOf="@+id/checkDeadline"
-        app:layout_constraintTop_toBottomOf="@+id/checkDeadline" />
+        app:layout_constraintTop_toBottomOf="@+id/checkDeadline"
+        style="@style/TextPrimary" />
 
     <ImageButton
         android:id="@+id/dateBtn"

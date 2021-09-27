@@ -17,8 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -104,7 +106,6 @@ public class ListAdd extends AppCompatActivity implements View.OnClickListener{
                 dateAndTime.get(Calendar.MONTH),
                 dateAndTime.get(Calendar.DAY_OF_MONTH))
                 .show();
-
     }
     private void setInitialDateTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy  HH:mm");
@@ -136,6 +137,10 @@ public class ListAdd extends AppCompatActivity implements View.OnClickListener{
             App.getNoteRepository().setNotes(new Note(headline, body, date, App.getNoteRepository().getNotes().size()));
 
             finish();
+        }
+        int id = item.getItemId();
+        if(id == android.R.id.home){
+            this.finish();
         }
         return super.onOptionsItemSelected(item);
     }

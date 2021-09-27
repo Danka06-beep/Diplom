@@ -1,16 +1,19 @@
 package com.example.diplom;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -20,20 +23,22 @@ public class Setings extends AppCompatActivity implements View.OnClickListener{
     private EditText pinText;
     private ImageButton hideAndShow;
     private Button saveBtn;
-
+private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setings);
         Initialization();
+        setSupportActionBar(toolbar);
         hideAndShow.setOnClickListener(this);
         saveBtn.setOnClickListener(this);
-        Bundle extras = this.getIntent().getExtras();
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
     }
 
     private void Initialization() {
+        toolbar = findViewById(R.id.toolbar);
         pinText = findViewById(R.id.PinText);
         saveBtn = findViewById(R.id.saveBtn);
         hideAndShow = findViewById(R.id.hideAndShow);
@@ -68,5 +73,13 @@ public class Setings extends AppCompatActivity implements View.OnClickListener{
                 break;
         }
 
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if(id == android.R.id.home){
+            this.finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
